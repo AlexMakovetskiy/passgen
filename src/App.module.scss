@@ -1,0 +1,32 @@
+.appWrap {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: #47898A;
+
+	.appContainer {
+		padding: 20px 0;
+		max-width: 40%;
+		width: 100%;
+		background: #1E1E1E;
+		border-radius: 20px;
+		color: #E3E3E3;
+
+		&__title {
+			padding-bottom: 20px;
+			font-size: 50px;
+			text-align: center;
+		}
+
+		.generatorWrap {
+			padding: 10px 0;
+			margin-inline: auto;
+			background: #393D41;
+			width: 60%;
+			border-radius: 10px;
+		}
+	}
+}
+
