@@ -1,0 +1,110 @@
+.appWrap {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: var(--color-jelly-bean-blue);
+	
+
+	.appContainer {
+		padding: 60px 0;
+		max-width: 40%;
+		width: 100%;
+		background: var(--color-eerie-black);
+		border-radius: 20px;
+		color: var(--color-platinum);
+
+		&__title {
+			padding-bottom: 20px;
+			font-size: 50px;
+			text-align: center;
+		}
+
+		.generatorWrap {
+			margin-inline: auto;
+			padding: 30px 0;
+			width: 60%;
+			background: var(--color-onyx);
+			border-radius: 10px;
+
+			.generatorContainer {
+				margin-inline: auto;
+				width: 80%;
+				
+				&__firstTypeTitle,
+				&__secondTypeTitle {
+					padding-bottom: 14px;
+					font-size: 20px;
+				}
+
+				.firstTypeWrap {
+					padding-bottom: 30px;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+
+					.actionElementsWrap {
+						display: flex;
+						justify-content: space-between;
+						gap: 10px;
+
+						.generateAction {
+							padding: 4px 8px;
+							background: var(--color-jelly-bean-blue);
+							border-radius: 5px;
+							color: var(--color-platinum);
+							transition: all .3s;
+
+							&:hover {
+								transform: scale(1.1);
+							}
+						}
+
+						.copyAction {
+							height: 100%;
+							width: fit-content;
+						}
+					}
+				}
+
+				.secondTypeWrap {
+					padding-bottom: 30px;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+
+					.actionElementsWrap {
+						display: flex;
+						justify-content: space-between;
+						gap: 10px;
+					
+						.generateAction {
+							padding: 4px 8px;
+							background: var(--color-jelly-bean-blue);
+							border-radius: 5px;
+							color: var(--color-platinum);
+							transition: all .3s;
+
+							&:hover {
+								transform: scale(1.1);
+							}
+						}
+
+						.copyAction {
+							height: 100%;
+							width: fit-content;
+						}
+					}
+				}
+
+				.specialCharsTitle {
+					margin-left: 10px;
+					font-size: 16px;
+					user-select: none;
+				}
+			}
+		}
+	}
+}
+
