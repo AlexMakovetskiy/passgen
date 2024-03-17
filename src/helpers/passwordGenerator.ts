@@ -30,4 +30,12 @@ export const randomValueBlockTypes = {
 	string: "string",
 } as const;
 
-export type RandomValueBlockTypes = keyof typeof randomValueBlockTypes;
+export const randomCharValueTypes = {
+	stringValue: "stringValue",
+	numberValue: "numberValue",
+	specialValue: "specialValue",
+};
+
+export const specialChars = ["!", "%", "*", "/", "-", "+"];
+
+export const platinumColor = "#E3E3E3";

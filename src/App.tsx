@@ -1,54 +1,31 @@
 import { useState } from "react";
-import styles from "./App.module.scss";
+import { AiOutlineCopy } from "react-icons/ai";
+
 import useClipboard from "./hooks/useClipboard";
-import { RandomValueBlockTypes, alphabet, numbers, randomValueBlockTypes } from "./helpers/passwordGenerator";
+
+import { getCognitiveTypePassword, getRandomTypePassword } from "./utils/passUtils";
+import { platinumColor } from "./helpers/passwordGenerator";
+
+import styles from "./App.module.scss";
 
 function App() {
-	const [cognitiveGeneratorValue, setCognitiveGeneratorValue] = useState<string>("value");
+	const [checked, setChecked] = useState<boolean>(false);
+	const [cognitiveGeneratorValue, setCognitiveGeneratorValue] = useState<string>(getCognitiveTypePassword());
+	const [randomGeneratorValue, setRandomGeneratorValue] = useState<string>(getRandomTypePassword(checked));
 
-	const { copyToClipBoard } = useClipboard(500);
+	const copyDelay = 500;
+	const { copyToClipBoard } = useClipboard(copyDelay);
 
-	function getRandomValue2or3() {
-		return Math.random() < 0.5 ? 2 : 3;
-	}
-
-	function getRandomValue3or4() {
-		return Math.random() < 0.5 ? 3 : 4;
-	}
-
-	function getRandomCharacter() {
-		return Math.round(Math.random())
-			? (alphabet[Math.ceil(Math.random() * 23)] ?? "f").toUpperCase()
-			: alphabet[Math.ceil(Math.random() * 23)] ?? "k";
-	}
-
-	function getRandomValueBlock(randomValueBlockType: RandomValueBlockTypes, valueLength: number) {
-		if (randomValueBlockType === randomValueBlockTypes.string) {
-			const firstPart = getRandomCharacter() + getRandomCharacter();
-			return valueLength === 3 ? firstPart + (getRandomCharacter() ?? "r") : firstPart;
-		}
-
-		const firstPart = (numbers[Math.round(Math.random() * 9)] ?? "5") + (numbers[Math.round(Math.random() * 9)] ?? "7");
-
-		return valueLength === 3 ? firstPart + (numbers[Math.round(Math.random() * 9)] ?? "9") : firstPart;
-	}
-
-	function getCognitiveTypePassword() {
-		const firstStringBlock = getRandomValueBlock(randomValueBlockTypes.string, getRandomValue2or3());
-		const firstNumberBlock = getRandomValueBlock(randomValueBlockTypes.number, getRandomValue2or3());
-		const secondStringBlock = getRandomValueBlock(randomValueBlockTypes.string, getRandomValue2or3());
-
-		return (
-			firstStringBlock +
-			firstNumberBlock +
-			secondStringBlock +
-			(getRandomValue3or4() === 4 ? getRandomValueBlock(randomValueBlockTypes.number, getRandomValue2or3()) : "")
-		);
+	function toggleSpecialChars() {
+		return setChecked(!checked);
 	}
 
 	function generateCognitiveType() {
-		setCognitiveGeneratorValue(getCognitiveTypePassword() ?? "");
-		return getCognitiveTypePassword();
+		return setCognitiveGeneratorValue(getCognitiveTypePassword());
+	}
+
+	function generateRandomType() {
+		return setRandomGeneratorValue(getRandomTypePassword(checked));
 	}
 
 	return (
@@ -56,11 +33,43 @@ function App() {
 			<div className={styles.appContainer}>
 				<h1 className={styles.appContainer__title}>Password generator</h1>
 				<div className={styles.generatorWrap}>
-					<h4 className={styles.generatorWrap__firstTypeTitle}>Cognitive type:</h4>
-					<div className={styles.firstTypeWrap}>
-						<span className={styles.firstTypeWrap__valueField}>{cognitiveGeneratorValue}</span>
-						<button onClick={generateCognitiveType}>Generate</button>
-						<button onClick={() => copyToClipBoard(cognitiveGeneratorValue)}>copy</button>
+					<div className={styles.generatorContainer}>
+						<h4 className={styles.generatorContainer__firstTypeTitle}>Cognitive type:</h4>
+						<div className={styles.firstTypeWrap}>
+							<span className={styles.firstTypeWrap__valueField}>{cognitiveGeneratorValue}</span>
+							<div className={styles.actionElementsWrap}>
+								<button onClick={generateCognitiveType} className={styles.generateAction}>
+									Generate
+								</button>
+								<button onClick={() => copyToClipBoard(cognitiveGeneratorValue ?? "")} className={styles.copyAction}>
+									<AiOutlineCopy size={30} color={platinumColor} />
+								</button>
+							</div>
+						</div>
+						<h4 className={styles.generatorContainer__secondTypeTitle}>Random type:</h4>
+						<div className={styles.secondTypeWrap}>
+							<span className={styles.secondTypeWrap__valueField}>{randomGeneratorValue}</span>
+							<div className={styles.actionElementsWrap}>
+								<button onClick={generateRandomType} className={styles.generateAction}>
+									Generate
+								</button>
+								<button onClick={() => copyToClipBoard(cognitiveGeneratorValue ?? "")} className={styles.copyAction}>
+									<AiOutlineCopy size={30} color={platinumColor} />
+								</button>
+							</div>
+						</div>
+						<input
+							type="checkbox"
+							name="specialCharacters"
+							id="specialCharacters"
+							className={styles.specialCharsToggler}
+							checked={checked}
+							onClick={toggleSpecialChars}
+							readOnly={true}
+						/>
+						<label htmlFor="specialCharacters" className={styles.specialCharsTitle}>
+							Special characters?
+						</label>
 					</div>
 				</div>
 			</div>
