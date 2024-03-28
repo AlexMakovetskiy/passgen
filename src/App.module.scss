@@ -9,16 +9,41 @@
 
 	.appContainer {
 		padding: 60px 0;
-		max-width: 40%;
+		max-width: 1024px;
 		width: 100%;
 		background: var(--color-eerie-black);
 		border-radius: 20px;
 		color: var(--color-platinum);
 
+		@media (max-width: 1300px) {
+			& {
+				max-width: 850px;
+			}
+		}
+
+		@media (max-width: 1300px) {
+			& {
+				max-width: 650px;
+			}
+		}
+
+		@media (max-width: 660px) {
+			& {
+				max-width: 500px;
+			}
+		}
+
+
 		&__title {
 			padding-bottom: 20px;
 			font-size: 50px;
 			text-align: center;
+
+			@media (max-width: 660px) {
+				& {
+					font-size: 40px;
+				}
+			}
 		}
 
 		.generatorWrap {
@@ -27,6 +52,19 @@
 			width: 60%;
 			background: var(--color-onyx);
 			border-radius: 10px;
+			
+			@media (max-width: 1300px) {
+				& {
+					max-width: 530px;
+					width: 100%;
+				}
+			}
+
+			@media (max-width: 660px) {
+				& {
+					max-width: 400px;
+				}
+			}
 
 			.generatorContainer {
 				margin-inline: auto;
@@ -98,6 +136,18 @@
 					}
 				}
 
+				@media(max-width: 510px) {
+					.firstTypeWrap,
+					.secondTypeWrap {
+						margin-inline: auto;
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: flex-start;
+						gap: 10px;
+					}
+				}
+
 				.specialCharsTitle {
 					margin-left: 10px;
 					font-size: 16px;
@@ -107,4 +157,3 @@
 		}
 	}
 }
-
