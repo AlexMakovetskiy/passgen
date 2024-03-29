@@ -6,19 +6,55 @@
 	align-items: center;
 	background: var(--color-jelly-bean-blue);
 	
+	@media (max-width: 510px) {
+		& {
+			background: var(--color-eerie-black);
+		}
+	}
 
 	.appContainer {
 		padding: 60px 0;
-		max-width: 40%;
+		max-width: 1024px;
 		width: 100%;
 		background: var(--color-eerie-black);
 		border-radius: 20px;
 		color: var(--color-platinum);
 
+		@media (max-width: 1300px) {
+			& {
+				max-width: 850px;
+			}
+		}
+
+		@media (max-width: 1300px) {
+			& {
+				max-width: 650px;
+			}
+		}
+
+		@media (max-width: 660px) {
+			& {
+				max-width: 500px;
+			}
+		}
+
+
 		&__title {
 			padding-bottom: 20px;
 			font-size: 50px;
 			text-align: center;
+
+			@media (max-width: 660px) {
+				& {
+					font-size: 40px;
+				}
+			}
+
+			@media (max-width: 440px) {
+				& {
+					font-size: 30px;
+				}
+			}
 		}
 
 		.generatorWrap {
@@ -27,6 +63,25 @@
 			width: 60%;
 			background: var(--color-onyx);
 			border-radius: 10px;
+			
+			@media (max-width: 1300px) {
+				& {
+					max-width: 530px;
+					width: 100%;
+				}
+			}
+
+			@media (max-width: 660px) {
+				& {
+					max-width: 400px;
+				}
+			}
+
+			@media (max-width: 410px) {
+				& {
+					background: transparent;
+				}
+			}
 
 			.generatorContainer {
 				margin-inline: auto;
@@ -36,6 +91,18 @@
 				&__secondTypeTitle {
 					padding-bottom: 14px;
 					font-size: 20px;
+				}
+
+				@media (max-width: 410px) {
+					&__firstTypeTitle,
+					&__secondTypeTitle {
+						text-align: center;
+					}
+
+					.firstTypeWrap__valueField,
+					.secondTypeWrap__valueField {
+						padding-bottom: 10px;
+					}
 				}
 
 				.firstTypeWrap {
@@ -98,6 +165,25 @@
 					}
 				}
 
+				@media(max-width: 510px) {
+					.firstTypeWrap,
+					.secondTypeWrap {
+						margin-inline: auto;
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: flex-start;
+						gap: 10px;
+					}
+				}
+
+				@media(max-width: 410px) {
+					.firstTypeWrap,
+					.secondTypeWrap {
+						align-items: center;
+					}
+				}
+
 				.specialCharsTitle {
 					margin-left: 10px;
 					font-size: 16px;
@@ -107,4 +193,3 @@
 		}
 	}
 }
-
